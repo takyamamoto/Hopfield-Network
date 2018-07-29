@@ -9,11 +9,22 @@ Hopfield network implemented with Python
 - tqdm
 
 ## Usage
-Run`train.py`
+Run`train_mnist.py`
 
 ## Demo
 ```
+Start to data preprocessing...
+Start to train weights...
+100%|██████████| 3/3 [00:00<00:00, 274.99it/s]
+Start to predict...
+100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
+Show prediction results...
 ```
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png">
+```
+Show network weights matrix...
+```
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png">
 
 ## Paper
 - Amari, SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229

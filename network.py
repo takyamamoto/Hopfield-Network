@@ -15,13 +15,16 @@ class HopfieldNetwork(object):
         print("Start to train weights...")
         num_data =  len(train_data)
         self.num_neuron = train_data[0].shape[0]
+        
         # initialize weights
         W = np.zeros((self.num_neuron, self.num_neuron))
         rho = np.sum([np.sum(t) for t in train_data]) / (num_data*self.num_neuron)
+        
         # Hebb rule
         for i in tqdm(range(num_data)):
             t = train_data[i] - rho
             W += np.outer(t, t)
+        
         # Make diagonal element of W into 0
         diagW = np.diag(np.diag(W))
         W = W - diagW
@@ -37,6 +40,7 @@ class HopfieldNetwork(object):
         
         # Copy to avoid call by reference 
         copied_data = np.copy(data)
+        
         # Define predict list
         predicted = []
         for i in tqdm(range(len(data))):
@@ -46,7 +50,7 @@ class HopfieldNetwork(object):
     def _run(self, init_s):
         if self.asyn==False:
             """
-            synchronous update
+            Synchronous update
             """
             # Compute initial state energy
             s = init_s
@@ -68,7 +72,7 @@ class HopfieldNetwork(object):
             return s
         else:
             """
-            asynchronous update
+            Asynchronous update
             """
             # Compute initial state energy
             s = init_s
