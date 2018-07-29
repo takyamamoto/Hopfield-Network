@@ -21,11 +21,9 @@ Start to predict...
 100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
 Show prediction results...
 ```
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png">
-```
-Show network weights matrix...
-```
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png">
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png" width=50%>
+`Show network weights matrix...`
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png" width=50%>
 
 ## Paper
 - Amari, "Neural theory of association and concept-formation", SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229
