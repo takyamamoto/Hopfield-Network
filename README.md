@@ -21,8 +21,11 @@ Start to predict...
 100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
 Show prediction results...
 ```
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png" width=50%>
-`Show network weights matrix...`
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png" width=30%>
+
+```
+Show network weights matrix...
+````
 <img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png" width=50%>
 
 ## Paper
