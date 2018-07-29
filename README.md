@@ -10,15 +10,17 @@ Hopfield network implemented with Python
 - keras (to load MNIST dataset)
 
 ## Usage
-Run`train_mnist.py`
+Run `train.py` or `train_mnist.py`
 
 ## Demo
+
+### train.py
 ```
 Start to data preprocessing...
 Start to train weights...
-100%|██████████| 3/3 [00:00<00:00, 274.99it/s]
+100%|██████████| 4/4 [00:06<00:00,  1.67s/it]
 Start to predict...
-100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
+100%|██████████| 4/4 [00:02<00:00,  1.80it/s]
 Show prediction results...
 ```
 <img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result.png" width=30%>
@@ -27,6 +29,22 @@ Show prediction results...
 Show network weights matrix...
 ````
 <img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png" width=50%>
+
+### train_mnist.py
+```
+Start to data preprocessing...
+Start to train weights...
+100%|██████████| 3/3 [00:00<00:00, 274.99it/s]
+Start to predict...
+100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
+Show prediction results...
+```
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/result_mnist.png" width=30%>
+
+```
+Show network weights matrix...
+````
+<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights_mnist.png" width=50%>
 
 ## Paper
 - Amari, "Neural theory of association and concept-formation", SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229

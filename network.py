@@ -80,7 +80,7 @@ class HopfieldNetwork(object):
             
             # Iteration
             for i in range(self.num_iter):
-                for j in range(130):
+                for j in range(100):
                     # Select random neuron
                     idx = np.random.randint(0, self.num_neuron) 
                     # Update s

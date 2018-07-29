@@ -37,7 +37,7 @@ def plot(data, test, predicted, figsize=(3, 3)):
         axarr[i, 2].axis('off')
             
     plt.tight_layout()
-    plt.savefig("result.png")
+    plt.savefig("result_mnist.png")
     plt.show()
 
 def preprocessing(img):
@@ -71,10 +71,10 @@ def main():
     test = []
     for i in range(3):
         xi = x_train[y_train==i]
-        test.append(xi[2])
+        test.append(xi[1])
     test = [preprocessing(d) for d in test]
     
-    predicted = model.predict(test, threshold=60, asyn=True)
+    predicted = model.predict(test, threshold=50, asyn=True)
     print("Show prediction results...")
     plot(data, test, predicted, figsize=(5, 5))
     print("Show network weights matrix...")
