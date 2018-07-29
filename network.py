@@ -18,7 +18,7 @@ class HopfieldNetwork(object):
         # initialize weights
         W = np.zeros((self.num_neuron, self.num_neuron))
         rho = np.sum([np.sum(t) for t in train_data]) / (num_data*self.num_neuron)
-        # hebb rule
+        # Hebb rule
         for i in tqdm(range(num_data)):
             t = train_data[i] - rho
             W += np.outer(t, t)
@@ -44,7 +44,6 @@ class HopfieldNetwork(object):
         return predicted
     
     def _run(self, init_s):
-
         if self.asyn==False:
             """
             synchronous update
@@ -74,12 +73,10 @@ class HopfieldNetwork(object):
             # Compute initial state energy
             s = init_s
             e = self.energy(s)
-            #print(s.shape)
-            #print(s[0])
             
             # Iteration
             for i in range(self.num_iter):
-                for j in range(100):
+                for j in range(130):
                     # Select random neuron
                     idx = np.random.randint(0, self.num_neuron) 
                     # Update s
@@ -100,6 +97,10 @@ class HopfieldNetwork(object):
         return -0.5 * s @ self.W @ s + np.sum(s * self.threshold)
 
     def plot_weights(self):
-        plt.figure(figsize=(12, 9))
+        plt.figure(figsize=(6, 5))
         w_mat = plt.imshow(self.W, cmap=cm.coolwarm)
         plt.colorbar(w_mat)
+        plt.title("Network Weights")
+        plt.tight_layout()
+        plt.savefig("weights.png")
+        plt.show()
