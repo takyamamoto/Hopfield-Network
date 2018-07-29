@@ -1,5 +1,5 @@
-# Hopfield-Network
-Hopfield network implemented with Python
+# Hopfield Network
+Hopfield network (Amari-Hopfield network) implemented with Python. Two update rules are implemented: *Asynchronous* & *Synchronous*
 
 ## Requirement
 - Python >= 3.5
@@ -15,6 +15,7 @@ Run `train.py` or `train_mnist.py`
 ## Demo
 
 ### train.py
+The following is the result of using *Synchronous* update
 ```
 Start to data preprocessing...
 Start to train weights...
@@ -31,6 +32,7 @@ Show network weights matrix...
 <img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/imgs/weights.png" width=50%>
 
 ### train_mnist.py
+The following is the result of using *Asynchronous* update
 ```
 Start to data preprocessing...
 Start to train weights...
