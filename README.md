@@ -7,6 +7,7 @@ Hopfield network implemented with Python
 - matplotlib
 - skimage
 - tqdm
+- keras (to load MNIST dataset)
 
 ## Usage
 Run`train_mnist.py`
@@ -27,5 +28,5 @@ Show network weights matrix...
 <img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/weights.png">
 
 ## Paper
-- Amari, SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229
+- Amari, "Neural theory of association and concept-formation", SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229
 - J. J. Hopfield, "Neural networks and physical systems with emergent collective computational abilities", Proceedings of the National Academy of Sciences of the USA, vol. 79 no. 8 pp. 2554–2558, April 1982.
