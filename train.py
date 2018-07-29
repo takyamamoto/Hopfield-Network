@@ -16,8 +16,7 @@ from skimage.transform import resize
 #from tqdm import tqdm
 import network
 
-# ユーティリティ関数
-
+# Utils
 def get_corrupted_input(input, corruption_level):
     """
     入力にノイズを付与
@@ -71,7 +70,7 @@ coffee = rgb2gray(data.coffee())
 data = [camera, astronaut, horse, coffee]
 
 # Preprocessing
-print("Start to data preprocessing")
+print("Start to data preprocessing...")
 data = [preprocessing(d) for d in data]
 
 # Hopfield Network インスタンスの作成 & 学習
@@ -84,4 +83,4 @@ test = [get_corrupted_input(d, 0.3) for d in data]
 #predicted = hn.predict(test)
 
 #plot(hn, data, test, predicted, figsize=(5, 5))
-#hn.plot_weight()
+hn.plot_weights()
