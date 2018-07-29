@@ -14,13 +14,14 @@ class HopfieldNetwork(object):
     def train_weights(self, train_data):
         print("Start to train weights...")
         num_data =  len(train_data)
-        num_neuron = train_data[0].shape[0]
+        self.num_neuron = train_data[0].shape[0]
         # initialize weights
-        W = np.zeros((num_neuron, num_neuron))
-        
+        W = np.zeros((self.num_neuron, self.num_neuron))
+        rho = np.sum([np.sum(t) for t in train_data]) / (num_data*self.num_neuron)
         # hebb rule
         for i in tqdm(range(num_data)):
-            W += np.outer(train_data[i], train_data[i])
+            t = train_data[i] - rho
+            W += np.outer(t, t)
         # Make diagonal element of W into 0
         diagW = np.diag(np.diag(W))
         W = W - diagW
@@ -28,25 +29,29 @@ class HopfieldNetwork(object):
         
         self.W = W 
     
-    def predict(self, data, num_iter=10, threshold=0, asyn=False):
+    def predict(self, data, num_iter=20, threshold=0, asyn=False):
         print("Start to predict...")
         self.num_iter = num_iter
         self.threshold = threshold
         self.asyn = asyn
         
+        # Copy to avoid call by reference 
+        copied_data = np.copy(data)
         # Define predict list
         predicted = []
         for i in tqdm(range(len(data))):
-            predicted.append(self._run(data[i]))
+            predicted.append(self._run(copied_data[i]))
         return predicted
     
     def _run(self, init_s):
-        """
-        synchronous update
-        """
+
         if self.asyn==False:
+            """
+            synchronous update
+            """
             # Compute initial state energy
             s = init_s
+
             e = self.energy(s)
             
             # Iteration
@@ -62,10 +67,33 @@ class HopfieldNetwork(object):
                 # Update energy
                 e = e_new
             return s
+        else:
+            """
+            asynchronous update
+            """
+            # Compute initial state energy
+            s = init_s
+            e = self.energy(s)
+            #print(s.shape)
+            #print(s[0])
+            
+            # Iteration
+            for i in range(self.num_iter):
+                for j in range(100):
+                    # Select random neuron
+                    idx = np.random.randint(0, self.num_neuron) 
+                    # Update s
+                    s[idx] = np.sign(self.W[idx].T @ s - self.threshold)
                 
-        """
-        asynchronous update
-        """
+                # Compute new state energy
+                e_new = self.energy(s)
+                
+                # s is converged
+                if e == e_new:
+                    return s
+                # Update energy
+                e = e_new
+            return s
     
     
     def energy(self, s):
@@ -75,11 +103,3 @@ class HopfieldNetwork(object):
         plt.figure(figsize=(12, 9))
         w_mat = plt.imshow(self.W, cmap=cm.coolwarm)
         plt.colorbar(w_mat)
-
-    def plot_data(self, ax, data):
-        dim = int(np.sqrt(len(data)))
-        assert dim * dim == len(data)
-
-        img = (data.reshape(dim, dim) + 1) / 2
-        ax.imshow(img, cmap=cm.Greys_r, interpolation='nearest')
-        return ax
