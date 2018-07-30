@@ -32,21 +32,21 @@ def plot(data, test, predicted, figsize=(5, 6)):
     data = [reshape(d) for d in data]
     test = [reshape(d) for d in test]
     predicted = [reshape(d) for d in predicted]
-    
+
     fig, axarr = plt.subplots(len(data), 3, figsize=figsize)
     for i in range(len(data)):
         if i==0:
             axarr[i, 0].set_title('Train data')
             axarr[i, 1].set_title("Input data")
             axarr[i, 2].set_title('Output data')
-            
+
         axarr[i, 0].imshow(data[i])
         axarr[i, 0].axis('off')
         axarr[i, 1].imshow(test[i])
         axarr[i, 1].axis('off')
         axarr[i, 2].imshow(predicted[i])
         axarr[i, 2].axis('off')
-    
+
     plt.tight_layout()
     plt.savefig("result.png")
     plt.show()
@@ -54,12 +54,12 @@ def plot(data, test, predicted, figsize=(5, 6)):
 def preprocessing(img, w=128, h=128):
     # Resize image
     img = resize(img, (w,h), mode='reflect')
-    
+
     # Thresholding
     thresh = threshold_mean(img)
     binary = img > thresh
     shift = 2*(binary*1)-1 # Boolian to int
-    
+
     # Reshape
     flatten = np.reshape(shift, (w*h))
     return flatten
@@ -70,18 +70,18 @@ def main():
     astronaut = rgb2gray(skimage.data.astronaut())
     horse = skimage.data.horse()
     coffee = rgb2gray(skimage.data.coffee())
-    
+
     # Marge data
     data = [camera, astronaut, horse, coffee]
-    
+
     # Preprocessing
     print("Start to data preprocessing...")
     data = [preprocessing(d) for d in data]
-    
+
     # Create Hopfield Network Model
     model = network.HopfieldNetwork()
     model.train_weights(data)
-    
+
     # Generate testset
     test = [get_corrupted_input(d, 0.3) for d in data]
 
@@ -90,6 +90,6 @@ def main():
     plot(data, test, predicted)
     print("Show network weights matrix...")
     #model.plot_weights()
-    
+
 if __name__ == '__main__':
     main()
