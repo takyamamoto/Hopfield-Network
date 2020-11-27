@@ -15,6 +15,9 @@ from skimage.transform import resize
 import network
 
 # Utils
+# TODO: (line 16 of the main function) Make the test input a Lattice2D object
+# It will probably be better to do this in another file so it wont effect the
+# original program
 def get_corrupted_input(input, corruption_level):
     corrupted = np.copy(input)
     inv = np.random.binomial(n=1, p=corruption_level, size=len(input))
